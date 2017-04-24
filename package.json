@@ -1,0 +1,26 @@
+{
+  "name": "value-validator",
+  "version": "0.0.0",
+  "description": "A tool to evaluate the validity of a value against a schema.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter dot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pddivine/value-validator.git"
+  },
+  "author": "Patrick Divine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pddivine/value-validator/issues"
+  },
+  "homepage": "https://github.com/pddivine/value-validator#readme",
+  "dependencies": {
+    "typeof": "git+https://github.com/pddivine/typeOf#master"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}

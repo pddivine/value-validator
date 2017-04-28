@@ -23,8 +23,23 @@ function _validate (value, schema) {
   }
 
   // Handle value match
-  if ( valueType !== schema.type ) {
-    return false; }
+  if ( valueType !== schema.type ) { return false; }
+
+  // Handle object
+  if ( schema.schema !== undefined && ( valueType === Object || valueType === Array ) ) {
+    const subSchema = schema.schema;
+    const isPrototypal = subSchema.type !== undefined && subSchema.options !== undefined;
+    // Validate each element
+    if (isPrototypal) {
+      for ( elem in value ) {
+        if ( !_validate(value[elem], subSchema) ) { return false; };
+      }
+    } else {
+      for ( elem in value ) {
+        if ( !_validate(value[elem], subSchema[elem]) ) { return false; };
+      }
+    }
+  }
 
   return handleValidation(value, schema);
 }

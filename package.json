@@ -1,5 +1,5 @@
 {
-  "name": "value-validator",
+  "name": "value-validator.pddivine",
   "version": "0.0.0",
   "description": "A tool to evaluate the validity of a value against a schema.",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pddivine/value-validator.git"
+    "url": "git+https://github.com/pddivine/value-validator.pddivine.git"
   },
   "author": "Patrick Divine",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/pddivine/value-validator/issues"
+    "url": "https://github.com/pddivine/value-validator.pddivine/issues"
   },
-  "homepage": "https://github.com/pddivine/value-validator#readme",
+  "homepage": "https://github.com/pddivine/value-validator.pddivine#readme",
   "dependencies": {
     "typeof.pddivine": "0.0.0"
   },

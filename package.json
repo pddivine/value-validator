@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/pddivine/value-validator#readme",
   "dependencies": {
-    "typeof": "git+https://github.com/pddivine/typeOf#master"
+    "typeof.pddivine": "0.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

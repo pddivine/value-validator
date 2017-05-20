@@ -10,6 +10,7 @@ module.exports = _validate;
  * @returns
  */
 function _validate (value, schema) {
+  if (!schema) { return false; }
   const valueType = typeOf(value);
 
   // Handle null allowed

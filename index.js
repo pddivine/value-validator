@@ -1,4 +1,4 @@
-const typeOf = require('typeof');
+const typeOf = require('typeof.pddivine');
 
 module.exports = _validate;
 

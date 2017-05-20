@@ -16,6 +16,10 @@
     "url": "https://github.com/pddivine/value-validator.pddivine/issues"
   },
   "homepage": "https://github.com/pddivine/value-validator.pddivine#readme",
+  "files": [
+    "LICENSE",
+    "index.js"
+  ],
   "dependencies": {
     "typeof.pddivine": "0.0.0"
   },

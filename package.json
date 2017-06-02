@@ -21,7 +21,7 @@
     "index.js"
   ],
   "dependencies": {
-    "typeof.pddivine": "0.0.2"
+    "typeof.pddivine": "1.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

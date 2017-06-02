@@ -1,4 +1,4 @@
-# value-validator
+# value-validator.pddivine
 A tool to evaluate the validity of a value against a schema.
 
 ## Features
@@ -10,7 +10,7 @@ A tool to evaluate the validity of a value against a schema.
 ## TLDR;
 ### Single Values
 ```javascript
-const v2 = require('value-validator');
+const v2 = require('value-validator.pddivine');
 
 const dateSchema = {
   type: Date,

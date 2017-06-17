@@ -9,22 +9,23 @@ module.exports = _validate;
  * @param {object} schema
  * @returns
  */
-function _validate (value, schema) {
+function _validate (value, schema, options) {
+  const verbose = typeOf(options) === Object && !!options.verbose;
   if (!schema) { return false; }
   const valueType = typeOf(value);
 
   // Handle null allowed
   if ( valueType === null ) {
-    if ( schema.options.allowNull ) { return handleValidation(value, schema); }
+    if ( schema.options.allowNull ) { return handleValidation(value, schema, verbose); }
   }
 
   // Handle undefined allowed
   if ( valueType === undefined ) {
-    if ( !schema.options.required ) { return handleValidation(value, schema); }
+    if ( !schema.options.required ) { return handleValidation(value, schema, verbose); }
   }
 
   // Handle value match
-  if ( valueType !== schema.type ) { return false; }
+  if ( valueType !== schema.type ) { return _response(false, value, schema, verbose); }
 
   // Handle object
   if ( schema.schema !== undefined && ( valueType === Object || valueType === Array ) ) {
@@ -33,16 +34,18 @@ function _validate (value, schema) {
     // Validate each element
     if (isPrototypal) {
       for ( elem in value ) {
-        if ( !_validate(value[elem], subSchema) ) { return false; };
+        const nested = _validate(value[elem], subSchema, {verbose: true});
+        if ( !nested.success ) { return _response(false, value[elem], subSchema, verbose); }
       }
     } else {
       for ( elem in value ) {
-        if ( !_validate(value[elem], subSchema[elem]) ) { return false; };
+        const nested = _validate(value[elem], subSchema[elem], {verbose: true});
+        if ( !nested.success ) { return _response(false, value[elem], subSchema[elem], verbose); }
       }
     }
   }
 
-  return handleValidation(value, schema);
+  return handleValidation(value, schema, verbose);
 }
 
 /**
@@ -52,7 +55,11 @@ function _validate (value, schema) {
  * @param {any} schema - Schema which constains the validation function
  * @returns {boolean}
  */
-function handleValidation (value, schema) {
-  if ( typeOf(schema.options.validation) !== Function ) { return true };
-  return schema.options.validation(value);
+function handleValidation (value, schema, verbose) {
+  if ( typeOf(schema.options.validation) !== Function ) { return _response(true, null, null, verbose) };
+  return _response(schema.options.validation(value), value, schema, verbose);
+}
+
+function _response (success, value, schema, verbose) {
+  return verbose ? { success, value, schema } : success;
 }

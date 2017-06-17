@@ -138,3 +138,30 @@ v2( [ { name: 'Patrick', age: 31 }, { name: 'Patti', age: undefined } ], nestedC
 v2( [ { name: 'Patrick', age: 31 }, { name: 'Patti', age: 30 } ], nestedCollectionSchema ); // Returns true
 
 ```
+
+#### Verbosity
+If a reason for a validation rejection is desired, the 'verbose' flag can be set to true in the options parameter. The response, instead of boolean, will be an object with parameters: success, value, and schema.
+
+```javascript
+  // Example
+  const x = v2( /*<value to validate>*/, /*<schema to validate against>*/, { verbose: true } );
+  
+  /*
+    Value of 'x' in successful validation:
+    {
+      success: true,
+      value: null,
+      schema: null
+    }
+  */
+
+  /*
+    Value of 'x' in failed validation:
+    {
+      success: false,
+      value: <Value that caused failure>,
+      schema: <Schema being tested at time of failure>
+    }
+  */
+
+```

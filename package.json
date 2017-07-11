@@ -1,6 +1,6 @@
 {
   "name": "value-validator.pddivine",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A tool to evaluate the validity of a value against a schema.",
   "main": "index.js",
   "scripts": {

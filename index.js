@@ -33,12 +33,18 @@ function _validate (value, schema, options) {
     const isPrototypal = subSchema.type !== undefined && subSchema.options !== undefined;
     // Validate each element
     if (isPrototypal) {
-      for ( elem in value ) {
+      for ( let elem in value ) {
         const nested = _validate(value[elem], subSchema, {verbose: true});
         if ( !nested.success ) { return _response(false, value[elem], subSchema, verbose); }
       }
     } else {
-      for ( elem in value ) {
+      // Ensure all schema keys are on value
+      for ( let elem in subSchema ) {
+        if (value[elem] === undefined) {
+          value[elem] = undefined;
+        }
+      }
+      for ( let elem in value ) {
         const nested = _validate(value[elem], subSchema[elem], {verbose: true});
         if ( !nested.success ) { return _response(false, value[elem], subSchema[elem], verbose); }
       }
